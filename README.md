@@ -1,3 +1,4 @@
+![127 0 0 1_3000_house html(iPad Pro)](https://github.com/user-attachments/assets/3a3fd87f-2ddb-470e-9508-ff03b670e420)
 # House Warming Invitation Card Generator
 
 An elegant digital invitation card generator for house warming ceremonies, built with HTML, CSS, and JavaScript.
