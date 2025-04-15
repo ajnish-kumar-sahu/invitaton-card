@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Warming Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #B8860B;  
+            --secondary-color: #800000;  
+            --background-color: #FFF8E7;  
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        #card {
+            background: linear-gradient(135deg, #fff 0%, #FFF8DC 100%);
+            border: 3px double var(--primary-color);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative corner elements */
+        #card::before, #card::after {
+            content: '🏡';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        #card::before {
+            top: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+
+        #card::after {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header-text {
+            background: linear-gradient(to right, #B8860B, #800000);
+            padding: 15px;
+            margin: -40px -40px 20px -40px;
+            border-radius: 12px 12px 0 0;
+            color: white;
+            -webkit-text-fill-color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .mantra {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        .swastik {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            letter-spacing: 2px;
+        }
+
+        .decorative-line {
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--primary-color),
+                var(--secondary-color),
+                var(--primary-color),
+                transparent);
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .decorative-line::before {
+            content: '🕉';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 0 15px;
+            font-size: 1.5rem;
+            line-height: 1;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+        .event-details {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.9));
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+
+        .address {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 248, 220, 0.8));
+            border-radius: 0 0 12px 12px;
+            margin: 20px -40px -40px -40px;
+            padding: 25px;
+            border-top: 2px solid rgba(184, 134, 11, 0.2);
+        }
+
+        .contact {
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(128, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        @media print {
+            #download-btn { display: none; }
+        }
+        #dwonload-btn:hover{
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+        /* Download Button Styles */
+        #download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        @media (max-width: 480px) {
+            .header-text {
+                font-size: 2rem;
+            }
+            .swastik {
+                font-size: 2.5rem;
+            }
+            #card {
+                padding: 20px;
+            }
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.2;
+        }
+
+        .top-left { top: 10px; left: 10px; transform: rotate(-45deg); }
+        .top-right { top: 10px; right: 10px; transform: rotate(45deg); }
+        .bottom-left { bottom: 10px; left: 10px; transform: rotate(-135deg); }
+        .bottom-right { bottom: 10px; right: 10px; transform: rotate(135deg); }
+    </style>
+</head>
+<body>
+    <div id="card">
+        <h1 class="header-text">॥ श्री गणेशाय नम: ॥</h1>
+        <div class="mantra">ॐ वास्तु देवाय नम:</div>
+        <div class="swastik">॥ शुभ गृह प्रवेश ॥</div>
+        
+        <p style="font-size: 1.1rem; line-height: 1.8;">श्रीमान,<br>ईश्वर की असीम कृपा से हमारे नवनिर्मित मकान के शुभ गृह पूजन के अवसर पर आप सादर आमंत्रित हैं। कृपया सपरिवार पधार कर हमें अनुग्रहित करें।</p>
+
+        <div class="decorative-line"></div>
+
+        <div class="event-details">
+            <h2 style="color: var(--secondary-color); margin-bottom: 15px;">कार्यक्रम:</h2>
+            <p><span class="icon">🕉</span>कलश स्थापना : दिनांक 04.02.2025, मंगलवार को</p>
+            <p><span class="icon">🏡</span>गृह प्रवेश पूजन प्रारम्भ: दिनांक 07.02.2025, शुक्रवार - प्रातः 10:30 बजे</p>
+            <p><span class="icon"></span>प्रसाद संध्या: दिनांक 07.02.2025, शुक्रवार - संध्या 5:00 बजे से आपके आगमन तक</p>
+        </div>
+
+        <div class="decorative-line"></div>
+
+        <div class="address">
+            <h3 style="color: var(--secondary-color); margin-bottom: 10px;">निवेदन :- सुनील साव</h3>
+            <p style="font-size: 1.1rem;">स्थान: हाउस नं. 2,ग्राम-जतराही,पोस्ट-एदला, सिमरिया,चतरा,825103</p>
+            <p class="contact">📞 8210216316</p>
+        </div>
+    </div>
+    <button id="download-btn">Download Invitation</button>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            // Hide the download button before capturing
+            this.style.display = 'none';
+            
+            // Use html2canvas to capture the card
+            html2canvas(document.getElementById('card'), {
+                scale: 3,  // Increases resolution
+                useCORS: true,
+                logging: false
+            }).then(function(canvas) {
+                // Convert canvas to blob
+                canvas.toBlob(function(blob) {
+                    // Create a link to download the image
+                    const link = document.createElement('a');
+                    link.download = 'house_warming_invitation.jpg';
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                }, 'image/jpeg', 0.95);  // 95% quality JPEG
+            }).finally(function() {
+                // Restore the download button
+                document.getElementById('download-btn').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
